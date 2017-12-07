@@ -2,6 +2,7 @@
   "name": "angular-material-app",
   "version": "0.4.5",
   "license": "MIT",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --extract-css",
@@ -13,7 +14,11 @@
     "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json -s",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron": "electron .",
+    "electron-build": "npm run build",
+    "build:electron:mac": "electron-packager .",
+    "build:electron:win": "electron-packager ."
   },
   "private": true,
   "dependencies": {
@@ -56,6 +61,8 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "~3.2.0",
+    "electron": "^1.7.6",
+    "electron-packager": "^9.1.0",
     "hads": "^1.5.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
