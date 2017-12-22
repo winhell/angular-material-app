@@ -1,12 +1,52 @@
+# 0.5.3 (2017.12.*)
+
+### 更新
+* **angular：** 升级到`5.1.2`
+* **@angular/flex-layout: ** upgrade `2.0.0-beta.12`
+
+### 功能
+* 新增支持pwa
+
+# 0.5.2 (2017.12.20)
+
+### 更新
+* 新增固定宽度布局，支持自定义选项
+* 新增页脚，支持自定义选项
+* 更新页头，支持自定义选项
+* 侧边栏菜单，支持自定义选项
+* 新增material color 配色
+* 启用animation动画
+
+### 重构
+* 侧边栏菜单重写
+
+# 0.5.1 (2017.12.14)
+
+### 更新
+* **angular：** 更新到`5.1.1`
+移除karma、jasmine依赖包
+
+### 功能&优化
+移除assets目录下无用的文件
+* **analysis：** 移除ng2-charts
+
+
 # 0.5.0 (2017.*.*)
 
 ### 更新
 
 * **angular：** 更新到`5.0.0`
+* **material:** 更新到`5.0.0`
 * **flex-layout：**  更新到`2.0.0-beta.10`
-* 升级package依赖
+* **ng-quill：**  更新到`2.0.4`
+* **@swimlane/ngx-datatable:** 更新到`11.1.5`
+* **@swimlane/ngx-charts:** 更新到`7.0.1`
+* **ngx-perfect-scrollbar:** 更新到`^5.0.5`
 * 移除指定的三中主题色，改进主题切换方式，支持material内置颜色主题切换
 
+### 问题修复
+* 修复todo类型定义
+* 修复customizer遗留无用代码
 
 # 0.4.12
 

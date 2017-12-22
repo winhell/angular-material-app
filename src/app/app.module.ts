@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -17,6 +17,9 @@ import { SigninComponent } from './pages/signin/signin.component';
 
 import { FireBaseComponentsModule } from './shared/firebase.module';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,15 +30,16 @@ import { FireBaseComponentsModule } from './shared/firebase.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule,
     SharedModule,
     CoreModule,
     AdminModule,
     AppRoutingModule,
     FireBaseComponentsModule,
     ReactiveFormsModule,
+    environment.production ? ServiceWorkerModule.register('./ngsw-worker.js') : []
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
+import { NavigationModule } from './navigation/navigation.module';
 import { HeaderModule } from './header/header.module';
-import { SidenavModule } from '../sidenav/sidenav.module';
-
 import { AdminComponent } from './admin.component';
 import { BrandComponent } from './brand/brand.component';
 import { CustomizerComponent } from './customizer/customizer.component';
@@ -16,7 +15,7 @@ import { FooterComponent } from './footer/footer.component';
     RouterModule,
     SharedModule,
     HeaderModule,
-    SidenavModule
+    NavigationModule
   ],
   declarations: [
     AdminComponent,
