@@ -9,10 +9,12 @@ if (environment.production) {
 }
 
 
-platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
+document.addEventListener('DOMContentLoaded', () => {
+  platformBrowserDynamic().bootstrapModule(AppModule).then(() => {
   if (environment['ngsw']) {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./ngsw-worker.js');
     }
   }
+});
 });
