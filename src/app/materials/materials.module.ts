@@ -1,6 +1,17 @@
 import { NgModule } from '@angular/core';
+import { CalendarModule } from 'angular-calendar';
+
 import { SharedModule } from '../shared/shared.module';
-import { ComponentModule } from '../component/component.module';
+import {
+  NotificaitonModule,
+  DatePickerModule,
+  AmapModule,
+  ButtonModule,
+  FileUploadModule,
+  PaginationModule,
+  PopoverModule,
+  GithubButtonModule
+} from '../component';
 
 import { MaterialsRoutingModule } from './materials.routing';
 import { ToastComponent } from './toast/toast.component';
@@ -19,31 +30,22 @@ import { MarkdownComponent } from './markdown/markdown.component';
 import { PopoverComponent } from './popover/popover.component';
 import { CalendarComponent } from './calendar/calendar.component';
 
-import {
-  NotificaitonModule,
-  DatePickerModule,
-  AmapModule,
-  ButtonModule,
-  FileUploadModule,
-  PaginationModule
-} from '../component';
-
-import { CalendarModule } from 'angular-calendar';
 import { IconComponent } from './icon/icon.component';
 import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   imports: [
     SharedModule,
-    ComponentModule,
     MaterialsRoutingModule,
     CalendarModule.forRoot(),
     NotificaitonModule,
-    AmapModule.forRoot({apiKey: '5ca4be36897408ccfacadf90df1c5f91'}),
+    AmapModule.forRoot({ apiKey: '5ca4be36897408ccfacadf90df1c5f91' }),
     DatePickerModule,
     ButtonModule,
     FileUploadModule,
-    PaginationModule
+    PaginationModule,
+    PopoverModule,
+    GithubButtonModule
   ],
   declarations: [
     ToastComponent,
@@ -65,4 +67,4 @@ import { NotificationComponent } from './notification/notification.component';
     NotificationComponent
   ]
 })
-export class MaterialsModule { }
+export class MaterialsModule {}

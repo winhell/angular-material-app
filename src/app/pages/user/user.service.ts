@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -13,13 +13,13 @@ export class UserService {
   }
 
 
-  constructor(private _http: Http) {
+  constructor(private _http: HttpClient) {
     this._userList$ = new BehaviorSubject<any>([]);
   }
 
   getUserList() {
     const url = `${this.apiUrl}/userList.json`;
-    return this._http.get(url).map(res => res.json()).subscribe(res => {
+    return this._http.get(url).subscribe(res => {
       this._userList$.next(res);
     });
   }

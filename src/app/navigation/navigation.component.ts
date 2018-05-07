@@ -6,7 +6,6 @@ import { Component, OnInit, Inject } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-
   navigations;
   categories: object;
   currentPage;
@@ -16,18 +15,24 @@ export class NavigationComponent implements OnInit {
   // skeleton screen
   currentNum = new Array(20);
 
-  constructor(@Inject('NavigationService') private service) {
-  }
+  lists;
+
+  constructor(@Inject('NavigationService') private service) {}
 
   ngOnInit() {
     this.getNavs();
     this.getCategories();
+
+    // this.service.getList().subscribe(res => {
+    //   this.lists = res;
+    // })
   }
 
   getNavs(id: any = '', page: any = '') {
     this.service.getNavs(id, page);
     this.service.navigations.subscribe(res => {
-      this.navigations = res.data;
+      // this.navigations = res.data;
+      this.lists = res.data;
       this.totalPages = res.totalPages;
       this.currentPage = res.currentPage;
       this.hideLoading();
@@ -35,7 +40,7 @@ export class NavigationComponent implements OnInit {
   }
 
   getCategories() {
-    this.service.getCategories().subscribe(res => this.categories = res.data);
+    this.service.getCategories().subscribe(res => (this.categories = res.data));
   }
 
   findNavLists(id: any) {
@@ -53,10 +58,14 @@ export class NavigationComponent implements OnInit {
 
   hideLoading() {
     // 延时显示效果
-    setTimeout(() => this.currentNum = new Array(0), 1000);
+    setTimeout(() => (this.currentNum = new Array(0)), 1000);
   }
 
   showLoading() {
     this.currentNum = new Array(20);
+  }
+
+  selectedTagChange(tag) {
+    this.findNavLists(tag.id);
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
 import { SearchModule } from '../component/search';
 
@@ -14,13 +15,12 @@ import { MailRoutingModule } from './mail.routing';
 @NgModule({
   imports: [
     SharedModule,
+    HttpClientModule,
     MailRoutingModule,
     QuillModule,
     SearchModule
   ],
-  entryComponents: [
-    ComposeComponent
-  ],
+  entryComponents: [ComposeComponent],
   declarations: [
     MailComponent,
     ComposeComponent,
@@ -28,9 +28,6 @@ import { MailRoutingModule } from './mail.routing';
     ListComponent,
     ToolbarComponent
   ],
-  providers: [
-    { provide: 'mailService', useClass: MailService }
-  ]
+  providers: [{ provide: 'mailService', useClass: MailService }]
 })
-export class MailModule {
-}
+export class MailModule {}
