@@ -2,23 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 
 @Component({
-  selector: 'app-compose',
+  selector: 'app-mail-compose',
   templateUrl: './compose.component.html',
   styleUrls: ['./compose.component.scss']
 })
 export class ComposeComponent implements OnInit {
-
   mail;
-  name;
-  address = 'stbui@stbui.com';
-  subject;
-  content;
+  name: string;
+  address: string = 'stbui@stbui.com';
+  subject: string;
+  content: string;
 
-  constructor(private dialogRef: MatDialogRef<ComposeComponent>) {
-  }
+  constructor(private dialogRef: MatDialogRef<ComposeComponent>) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   send() {
     this.mail = {

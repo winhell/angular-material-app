@@ -1,40 +1,51 @@
-import {
+/**
+ * @license
+ * Copyright Stbui All Rights Reserved.
+ * https://github.com/stbui
+ */
+
+ import {
   Component,
   Input,
   Output,
   EventEmitter,
   ElementRef,
   ViewChild,
-  AfterViewInit
+  AfterViewInit,
+  ViewEncapsulation
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
-  selector: 'stbui-search, stb-search',
+  selector: 'stbui-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  host: {
+    class: 'stbui-search'
+  },
+  encapsulation: ViewEncapsulation.None
 })
 export class SearchComponent implements AfterViewInit {
-  inputValue;
+  inputValue: string | number;
 
   @Input() placeholder: string = '查找...';
   @Input() delay: number = 200;
-  @Output() onSearch: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onSearchChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onSearch: EventEmitter<string | number> = new EventEmitter<string | number>();
+  @Output() onSearchChange: EventEmitter<string | number> = new EventEmitter<string | number>();
 
   @ViewChild('inputRef') inputRef: ElementRef;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor() {}
 
   ngAfterViewInit() {
     fromEvent(this.inputRef.nativeElement, 'keyup')
       .pipe(
-        map(() => this.inputValue),
         debounceTime(this.delay),
-        distinctUntilChanged()
+        distinctUntilChanged(),
+        map(() => this.inputValue),
       )
-      .subscribe(input => console.log(input));
+      .subscribe(input => this.onSearchChange.emit(input));
   }
 
   enterUp() {

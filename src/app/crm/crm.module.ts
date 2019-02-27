@@ -1,36 +1,42 @@
 import { NgModule } from '@angular/core';
+
 import { SharedModule } from '../shared/shared.module';
+import { WidgetModule } from '../component/widget/widget.module';
 import { CrmRoutingModule } from './crm.routing';
-import { LeadComponent } from './lead/lead.component';
+import { LeadModule } from './lead/lead.module';
+import { ContactModule } from './contact/contact.module';
+
+import { CrmComponent } from './crm.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerCommonComponent } from './customer-common/customer-common.component';
-import {
-  ContactComponent,
-  ContactUpdateComponent
-} from './contact/contact.component';
 import { OpportunitiesComponent } from './opportunities/opportunities.component';
-import { CrmComponent } from './crm.component';
 import { ContractComponent } from './contract/contract.component';
 import { ProductComponent } from './product/product.component';
 
-import { LeadService } from './lead/lead.service';
-
-import { WidgetModule } from '../widget/widget.module';
+import { LayoutComponent } from './layout/layout.component';
+import { BrandModule } from '../admin';
+import { NavigationModule } from '../component/navigation';
+import { NavigationService } from './layout/navigation.service';
 
 @NgModule({
-  imports: [SharedModule, CrmRoutingModule, WidgetModule],
+  imports: [
+    SharedModule,
+    CrmRoutingModule,
+    WidgetModule,
+    BrandModule,
+    NavigationModule,
+    LeadModule,
+    ContactModule
+  ],
   declarations: [
-    LeadComponent,
     CustomerComponent,
     CustomerCommonComponent,
-    ContactComponent,
-    ContactUpdateComponent,
     OpportunitiesComponent,
     CrmComponent,
     ContractComponent,
-    ProductComponent
+    ProductComponent,
+    LayoutComponent
   ],
-  entryComponents: [ContactUpdateComponent],
-  providers: [{ provide: 'LeadService', useClass: LeadService }]
+  providers: [NavigationService]
 })
 export class CrmModule {}

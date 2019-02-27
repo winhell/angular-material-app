@@ -19,6 +19,9 @@ import { MarkdownComponent } from './markdown/markdown.component';
 import { PopoverComponent } from './popover/popover.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { NotificationComponent } from './notification/notification.component';
+import { ChatWidgetComponent } from './chat-widget/chat-widget.component';
+import { MessageComponent } from './message/message.component';
+import { DragDropComponent } from './drag-drop/drag-drop.component';
 
 const routes: Routes = [
   {
@@ -92,6 +95,18 @@ const routes: Routes = [
   {
     path: 'calendar',
     component: CalendarComponent
+  },
+  {
+    path: 'chat-widget',
+    component: ChatWidgetComponent
+  },
+  {
+    path: 'message',
+    component: MessageComponent
+  },
+  {
+    path: 'drag-drop',
+    component: DragDropComponent
   }
 ];
 

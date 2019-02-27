@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxDnDModule } from '@swimlane/ngx-dnd';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SharedModule } from '../shared/shared.module';
 import { SearchModule } from '../component';
+import { LayoutModule } from '../layouts';
 
 import { TodoRoutingModule } from './todo.routing';
 import { TodoComponent } from './todo.component';
@@ -16,9 +16,10 @@ import { TodoToolbarComponent } from './todo-toolbar/todo-toolbar.component';
 
 @NgModule({
   imports: [
-    SharedModule,
     HttpClientModule,
-    NgxDnDModule,
+    SharedModule,
+    LayoutModule,
+    DragDropModule,
     TodoRoutingModule,
     SearchModule
   ],

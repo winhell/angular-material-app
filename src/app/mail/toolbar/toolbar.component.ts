@@ -1,24 +1,20 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'stb-toolbar',
+  selector: 'app-mail-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-
   @Input() mail;
-  @Input() itemCount;
+  @Input() itemCount: number = 0;
   @Output() onForward = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onForwardTriggered() {
-    // this.shownMailDetail = null;
     this.onForward.emit(true);
   }
-
 }

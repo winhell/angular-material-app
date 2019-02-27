@@ -1,76 +1,88 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  MatDialog,
+  MatPaginator,
+  MatSort,
+  MatTableDataSource
+} from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
+import { NewComponent } from './new/new.component';
+import { LeadService } from './lead.service';
 
 @Component({
-  selector: 'app-lead',
+  selector: 'crm-lead',
   templateUrl: './lead.component.html',
   styleUrls: ['./lead.component.scss']
 })
 export class LeadComponent implements OnInit {
+  displayedColumns: string[] = [
+    'select',
+    'name',
+    'company',
+    'tel',
+    'phone',
+    'status_mapped',
+    'lastest_revisit_log',
+    'real_revisit_at',
+    'revisit_remind_at',
+    'star'
+  ];
 
-  currentPage = 1;
+  dataSource: any = new MatTableDataSource([]);
+  selection = new SelectionModel(true, []);
 
-  data;
-  selectData;
-  num = 0;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(@Inject('LeadService') private _service) {
-
-  }
+  constructor(private service: LeadService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    // this.select();
-    this.renderTable();
-
-    this._service.getLead().then(res => {
-      console.log(res)
+    this.service.getList().subscribe(res => {
+      this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator;
     });
   }
 
-
-  select() {
-    this.data = {
-      columns: [
-        {key: 'id', title: 'id', type: 'selection'},
-        {key: 'name', title: '姓名'},
-        {key: 'name', title: '公司名称'},
-        {key: 'name', title: '电话'},
-      ],
-      data: []
-    };
-
-
-    return this.data;
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
   }
 
-  count() {
+  masterToggle() {
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  /*
-   * 搜索事件
-   * */
-  onSearch(value) {
-
+  rowSelection(row, event) {
+    this.selection.toggle(row);
   }
 
-  onSelect($event) {
+  onNew(event) {
+    let dialogRef = this.dialog.open(NewComponent, {
+      width: '500px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
-  onDelete() {
+  onEditorTriggered(item) {
+    console.log(item);
+    let dialogRef = this.dialog.open(NewComponent, {
+      width: '500px',
+      data: item
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
-
-  // table 数据渲染
-  renderTable() {
-
+  onDeleteTriggered() {
+    console.log(this.selection.selected);
+    // this.service.delete(this.selection.selected);
   }
-
-  // 分页事件
-  onPage($event) {
-
-  }
-
-  getPageTotal() {
-  }
-
 }

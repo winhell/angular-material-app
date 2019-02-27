@@ -1,26 +1,24 @@
-<stbui-base-layout>
-  <mat-card>
-    <mat-card-content>
-      <textarea class="textarea" placeholder="说说看?"></textarea>
-    </mat-card-content>
-    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
-      <div fxLayout="row" fxLayoutAlign="start center">
+<div class="header" fxLayout="column" fxLayoutAlign="center start">
+  <h1>Stbui's Blog</h1>
+  <h5 class="header-desc">学习弯道超车的技巧！</h5>
+  <stbui-github-button type="link|star|fork"></stbui-github-button>
+</div>
 
-        <button mat-icon-button matTooltip="添加照片">
-          <mat-icon>photo</mat-icon>
-        </button>
+<div *ngIf="!items.length">
+  <stbui-loading-skeleton></stbui-loading-skeleton>
+  <stbui-loading-skeleton></stbui-loading-skeleton>
+  <stbui-loading-skeleton></stbui-loading-skeleton>
+</div>
 
-        <button mat-icon-button matTooltip="@他">
-          <mat-icon>person</mat-icon>
-        </button>
+<mat-card *ngFor="let item of items">
+  <div class="timer">{{ items.updated }}</div>
+  <mat-card-title>
+    <a class="title" href="/pages/blog/1" target="blank">{{ item.title }}</a>
+  </mat-card-title>
+  <mat-card-content>
+    <pre><code>{{item.body}}</code></pre>
+    <button mat-button color="primary">阅读全文...</button>
+  </mat-card-content>
+</mat-card>
 
-        <button mat-icon-button matTooltip="显示位置">
-          <mat-icon>location_on</mat-icon>
-        </button>
-
-      </div>
-      <button mat-raised-button color="accent" class="post-button">发送</button>
-
-    </mat-card-actions>
-  </mat-card>
-</stbui-base-layout>
+<stbui-pagination total="5" align="center"></stbui-pagination>

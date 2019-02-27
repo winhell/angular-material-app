@@ -1,1 +1,3 @@
-export * from './base-layout/base-layout.module';
+export * from './base-layout';
+export * from './sidenav-layout';
+export * from './layout';
